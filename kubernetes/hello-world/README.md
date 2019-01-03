@@ -1,1 +1,1 @@
-# Here is the readme to deploye the app.
+# Here is the readme to deploy the app.
