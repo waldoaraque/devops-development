@@ -1,14 +1,16 @@
-before_script:
-  - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev nodejs
-  - ruby -v
-  - which ruby
-  - gem install bundler --no-document
-  - bundle install --jobs $(nproc)  "${FLAGS[@]}"
+image: node:latest
 
-rspec:
+stages:
+  - development
+  
+development:
+  type: deploy
+  stage: development
+  image: ruby:latest
   script:
-    - bundle exec rspec
-
-rubocop:
-  script:
-    - bundle exec rubocop
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=node-heroku-dpl --api-key=$HEROKU_API_KEY
+  only:
+    - master
