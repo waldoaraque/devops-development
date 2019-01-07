@@ -11,12 +11,12 @@ $ nano listener.js
 ```
 With this content:
 ```sh
-var http = require('http');
-var handleRequest = function(request, response) {
+const http = require('http');
+const handleRequest = function(request, response) {
   response.writeHead(200);
   response.end("Hello World!");
 }
-var www = http.createServer(handleRequest);
+const www = http.createServer(handleRequest);
 www.listen(8080);
 ```
 From Shell simply exit the editor and save the listener.js file. We should have node installed in our shell. We can now run this simple command (the command produces no output):
