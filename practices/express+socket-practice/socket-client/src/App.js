@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import socketIOClient from 'socket.io-client';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      endpoint: 'http://localhost:4001'
+    }
+  }
+
+  send = () => {
+    const socket = socketIOClient(this.state.endpoint);
+    socket.emit('Change Color', 'Red');
+  }
+
   render() {
+    const socket = socketIOClient(this.state.endpoint);
+    socket.on('Change Color', (color) => {
+      document.body.style.backgroundColor = color;
+    });
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <div style={{ textAlign: "center" }}>
+        <button onClick={ () => this.send() }> 
+          Change Color
+        </button>
+      </div> 
     );
   }
 }
