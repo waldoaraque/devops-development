@@ -64,4 +64,83 @@ This is the console output you should see:
 ```sh
 Hello World!
 ```
+Let's now stop the running container. In this example, our app was running as Docker process 2c66d0efcbd4:
+```sh
+$ docker ps
+```
+This is the console output you should see:
+```sh
+CONTAINER ID        IMAGE                            COMMAND
+2c66d0efcbd4        USERNAME/hello-node:v1           "/bin/sh -c 'node  
+```
+Stop the running container using the ID provide above:
+```sh
+$ docker stop 2c66d0efcbd4
+```
+This is the console output you should see:
+```sh
+2c66d0efcbd4
+```
+Now, you must be login with your account docker hub in the shell:
+```sh
+$ docker login --username=yourhubusername --email=youremail@company.com
+```
+You can now push your container image to docker hub repository:
+```sh
+$ docker push USERNAME/hello-node:v1
+```
+This initial push may take a few minutes to complete:
+```sh
+The push refers to a repository [USERNAME/hello-node]
+ba6ca48af64e: Pushed 
+381c97ba7dc3: Pushed 
+604c78617f34: Pushed 
+fa18e5ffd316: Pushed 
+0a5e2b2ddeaa: Pushed 
+53c779688d06: Pushed 
+60a0858edcd5: Pushed 
+b6ca02dfe5e6: Pushed 
+v1: digest: sha256:8a9349a355c8e06a48a1e8906652b9259bba6d594097f115060acca8e3e941a2 size: 2002
+```
+## Create a yamls files to deploy the app in kubernetes.
+Create a yaml file.
+```sh
+$ nano k8s.yaml
+```
+With this content:
+(IMPORTANT: make sure to replace USERNAME with yours):
+```sh
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: hello-kubernetes
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-kubernetes
+  template:
+    metadata:
+      labels:
+        app: hello-kubernetes
+    spec:
+      containers:
+      - name: hello-kubernetes
+        image: USERNAME/hello-node:v1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-kubernetes
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: hello-kubernetes
 
+```
