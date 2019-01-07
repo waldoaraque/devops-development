@@ -50,7 +50,7 @@ $ docker build -t USERNAME/hello-node:v1 .
 ```
 Once this completes (it'll take some time to download and extract everything) you can test the image locally with the following command which will run a Docker container as a daemon on port 8080 from our newly-created container image:
 ```sh
-docker run -d -p 8080:8080 USERNAME/hello-node:v1
+$ docker run -d -p 8080:8080 USERNAME/hello-node:v1
 ```
 This is the console output you should see something similar to this:
 ```sh
@@ -58,7 +58,7 @@ This is the console output you should see something similar to this:
 ```
 Use curl or wget from your CloudShell prompt if you'd like:
 ```sh
-curl http://localhost:8080
+$ curl http://localhost:8080
 ```
 This is the console output you should see:
 ```sh
