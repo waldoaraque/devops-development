@@ -1,7 +1,8 @@
 # Nodejs Practice: Basic API
 ## Pre-requirements:
 - Nodejs installed.
-## Create a project folder to begin the code.
+
+## Make the basics steps to create an API.
 We position ourselves in the folder to start the project, in this case `nodejs-api-basic`.
 
 Now, let's start our project using `npm` commands
@@ -106,3 +107,5 @@ The output of the shell, it should look like this:
 [nodemon] starting `node api.js`
 API running at http://localhost:3000
 ```
+
+## Make better the API with http methods responses.
