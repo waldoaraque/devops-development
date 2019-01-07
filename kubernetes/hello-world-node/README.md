@@ -102,7 +102,7 @@ fa18e5ffd316: Pushed
 b6ca02dfe5e6: Pushed 
 v1: digest: sha256:8a9349a355c8e06a48a1e8906652b9259bba6d594097f115060acca8e3e941a2 size: 2002
 ```
-## Create a yamls files to deploy the app in kubernetes.
+## Create a yaml file to deploy the app in kubernetes.
 Create a yaml file.
 ```sh
 $ nano k8s.yaml
