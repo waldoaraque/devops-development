@@ -1,8 +1,14 @@
 'use-strict'
 
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
 
-app.listen(3000, () => {
-	console.log('API running at http://localhost:3000');
+const app = express();
+const port = process.env.PORT || 3000
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.listen(port, () => {
+	console.log(`API running at http://localhost:${port}`);
 });
