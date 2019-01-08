@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import io from 'socket.io-client';
+import openSocket from 'socket.io-client';
+const  socket = openSocket('http://localhost:8080');
 
 class App extends React.Component {
 
@@ -11,8 +12,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    this.socket = io('/')
-    this.socket.on('message');
+    
   }
 
   render() {
