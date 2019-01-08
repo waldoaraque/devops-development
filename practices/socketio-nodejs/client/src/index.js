@@ -1,12 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import io from 'socket.io-client';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class App extends React.Component {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+
+  componentDidMount () {
+    this.socket = io('/')
+    this.socket.on('message');
+  }
+
+  render() {
+
+    return(
+      <div>
+        <h1>Hello World</h1>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'));
