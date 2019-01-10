@@ -13,4 +13,6 @@ function getHelloWorld (req, res)
 	}
 }
 
-module.exports = getHelloWorld;
+module.exports = {
+	getHelloWorld
+}
