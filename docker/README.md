@@ -1,5 +1,20 @@
 # Docker Getting Started.
 ![N|Solid](https://d33wubrfki0l68.cloudfront.net/e7a6759eb6232b4280b83b18aa255289d65e4b6e/7698a/images/logo.webp)
+
+### Install Docker with the Script
+The first step is clone this repository:
+```shell
+$ git clone https://gitlab.com/betpluz/standards/hello-world-devops.git
+```
+The folder `docker` contains an script to install `Docker Container Engine`. We going to open the project:
+```shell
+$ cd hello-world-devops/
+```
+Now, to install docker, we'll need run the script with the following command:
+```shell
+$ sh docker/install-docker.sh
+```
+
 ### Terminology
 In the last section, we used a lot of Docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the Docker ecosystem.
 
