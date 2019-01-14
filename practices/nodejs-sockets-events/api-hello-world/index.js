@@ -17,7 +17,6 @@ const port = process.env.PORT || 3080;
 const io = socketIO(server);
 
 io.on('connection', (socket) => {
-	
   console.log("Client Successfully Connected");
 
   socket.on('message', () =>{
