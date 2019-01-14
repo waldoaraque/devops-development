@@ -8,4 +8,3 @@ api.get('/answerToMe', controller.getHelloWorld);
 
 module.exports = api;
 
-
