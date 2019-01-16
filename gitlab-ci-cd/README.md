@@ -1,7 +1,7 @@
 # Gitlab for CI/CD
 
 ### 1. High level architecture.
-![N|Solid](./gitlab-workflow.png)
+![N|Solid](resources/img/gitlab-workflow.png)
 
 ### 2. Gitlab Runner.
 We going to download one of the binaries for our machine:
