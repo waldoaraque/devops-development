@@ -33,10 +33,41 @@ $ docker run -d --name gitlab-runner --restart always \
      gitlab/gitlab-runner:latest
 ```
 
-
 ### Register the `runner`.
-
-
+To register a `runner` using a Docker Container Engine:
+```shell
+$ docker run --rm -t -i -v /srv/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner register
+```
+Enter your GitLab instance URL:
+```shell
+ Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com )
+ https://gitlab.com
+```
+Enter the token you obtained from the GitLab Project in `CI/CD Settings -> Runners` (expand options). To register the `runner`:
+```shell
+ Please enter the gitlab-ci token for this runner
+ xxxzzzxxxzzz
+```
+Enter a description for the `runner`, you can change this later in GitLab’s UI:
+```shell
+ Please enter the gitlab-ci description for this runner
+ [hostame] my-runner
+```
+Enter the tags associated with the `runner`, you can change this later in GitLab’s UI:
+```shell
+ Please enter the gitlab-ci tags for this runner (comma separated):
+ my-tag,another-tag
+```
+Enter the `runner` executor:
+```shell
+ Please enter the executor: ssh, docker+machine, docker-ssh+machine, kubernetes, docker, parallels, virtualbox, docker-ssh, shell:
+ docker
+```
+You’ll be asked for the default image to be used for projects that do not define one in `.gitlab-ci.yml`:
+```shell
+ Please enter the Docker image (eg. ruby:2.1):
+ node:9
+```
 ### Create demo application.
 
 
