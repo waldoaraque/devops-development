@@ -1,16 +1,40 @@
-image: node:latest
+variables:
+  WORK_DIR: ${CI_PROJECT_NAME}
+  BRANCH: ${CI_COMMIT_REF_NAME}
+  REGISTRY: ##registry.gitlab.com/betpluz/standards/hello-world-devops/
 
 stages:
-  - development
-  
-development:
-  type: deploy
-  stage: development
-  image: ruby:latest
-  script:
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=hi-world-nodejs --api-key=$HEROKU_API_KEY
-  only:
-    - development
+  - build
+  #- test
+  - deploy
+
+
+build_project:
+    image: docker:latest
+    services: 
+      - docker:dind
+    stage: build
+    script:
+        - docker login -u waldoaraque -p $PASS registry.gitlab.com
+        - docker build -t $REGISTRY .
+        - docker push $REGISTRY
+
+#test_project:
+#    image: docker:latest
+#    services: 
+#      - docker:dind    
+#    stage: test
+#    script:
+#        - docker login -u waldoaraque -p $PASS registry.gitlab.com
+#        - docker pull $REGISTRY
+#        - docker run --name=$BRANCH -p 80:8080 -i $REGISTRY npm run ci
+        
+deploy_project:
+    stage: deploy
+    script:
+        - docker login -u waldoaraque -p $PASS registry.gitlab.com
+        - docker pull $REGISTRY
+        - docker stop $(docker ps -a -q) || true && docker rm $(docker ps -a -q) || true
+        - docker run --name=$BRANCH -p 80:8080 -dit $REGISTRY npm start
+    tags:
+      - shell_executor
