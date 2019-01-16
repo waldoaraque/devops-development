@@ -1,34 +1,43 @@
 # Gitlab for CI/CD
 
-### 1. High level architecture.
+### High level architecture.
 ![N|Solid](resources/img/gitlab-workflow.png)
 
-### 2. Gitlab Runner.
-We going to download one of the binaries for our machine:
+### Requirements
+- Gitlab Project
+- Docker Container Engine
+
+### Introduction
+The gitlab application for CI / CD is based on two important parts, that is, the `pipeline` will follow the instructions of the `.gitlab-ci.yml` file and the `runner` is the environment where the pipeline will be executed, this can be a local server or a docker container.
+
+In addition, it is supported by a `registry` whose main objective is to store the images that the pipeline must construct when executed.
+
+### Gitlab Runner with Docker
+The first step is download the image from docker hub repository to use `gitlab-runner`:
+
 ```shell
-$ sudo wget -O /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+$ docker pull gitlab-runner
 ```
-Now, give it permissions to execute:
+Now, we need to mount a config volume into the `gitlab-runner` to be used for configs and other resources:
 ```shell
-$ sudo chmod +x /usr/local/bin/gitlab-runner
+$ docker run -d --name gitlab-runner --restart always \
+   -v /srv/gitlab-runner/config:/etc/gitlab-runner \
+   -v /var/run/docker.sock:/var/run/docker.sock \
+   gitlab/gitlab-runner:latest
+```
+Once the configuration is ready, we run the `runner`:
+```shell
+$ docker run -d --name gitlab-runner --restart always \
+     -v /var/run/docker.sock:/var/run/docker.sock \
+     --volumes-from gitlab-runner-config \
+     gitlab/gitlab-runner:latest
 ```
 
-Create a `GitLab CI` user:
-```shell 
-$ sudo useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
-```
 
-### 3. Gitlab Registry.
+### Register the `runner`.
 
 
-### 4. Create demo application.
+### Create demo application.
 
 
-### 5. CI/CD using plain `ssh` (Not dockerized approach).
-
-
-### 6. CI/CD using `runner shell executor`.
-
-
-### 7. CI/CD using `runner docker executor`.
 
