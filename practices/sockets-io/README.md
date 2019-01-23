@@ -1,4 +1,4 @@
-# Socket.io with NodeJS and ReactJS
+# Create a real time app with Socket.io, NodeJS and ReactJS
 ![N|Solid](https://cdn-images-1.medium.com/max/1600/1*ODPpimMHuBWuX0iivAFdhA.png)
 This folder contain two apps, the `api-socket-io` is the api server with `NodeJS` and `react-socket-io` is the client to connect with the server from a `ReactJS` template. 
 
