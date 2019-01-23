@@ -24,4 +24,16 @@ $ npm start
 ```
 Now, we can go to the browser that opens our react template in: `http:localhost:3000`.
 
+In addition, in the shell of our api server `api-socket-io`, we can see in the console output something similar to this:
+```shell
+> api-hello-world@1.0.0 start /home/waldo/jobs/hello-world-devops/practices/sockets-io/api-socket-io
+> nodemon index.js
 
+[nodemon] 1.18.9
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `node index.js`
+Server listening on port: 3080
+New client connected
+```
+This means that the react socket works and issues the message from the client to our server api correctly.
