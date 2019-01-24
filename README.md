@@ -1,6 +1,4 @@
-# hello-world-devops
-
-## DevOps Lifecycle
+# DevOps Lifecycle
 ![N|Solid](https://www.cephissus.com/wp-content/uploads/devops-system.png)
 
 DevOps is deep integration between development and operations. Understanding DevOps is not possible without knowing DevOps lifecycle.
