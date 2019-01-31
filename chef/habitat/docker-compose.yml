@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web-1:
+    image: $HAB_ORIGIN/webapp
+  web-2:
+    image: $HAB_ORIGIN/webapp
+    command: --peer web-1
+    depends_on:
+      - web-1
+  load-balancer:
+    image: $HAB_ORIGIN/haproxy
+    command: --peer web-2
+             --bind backend:webapp.default
+    ports:
+      - 8000:80
+    depends_on:
+      - web-2
