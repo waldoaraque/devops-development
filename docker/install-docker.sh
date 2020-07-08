@@ -1,4 +1,4 @@
-VERSION=18.03.0~ce-0~ubuntu
+VERSION=20.03.0~ce-0~ubuntu
 
 #remove docker olds versions 
 sudo apt-get remove docker docker-engine docker.io containerd runc
