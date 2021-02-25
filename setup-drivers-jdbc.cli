@@ -1,0 +1,6 @@
+connect
+module add --name=org.postgresql --resources=postgresql.jar --dependencies=javax.api,javax.transaction.api --module-root-dir=/opt/eap/modules/system/layers/base/
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql,driver-module-name=org.postgresql,driver-xa-datasource-class-name=org.postgresql.xa.PGXADataSource)
+module add --name=com.mysql  --dependencies=javax.api,javax.transaction.api --resources=mysql.jar --module-root-dir=/opt/eap/modules/system/layers/base/
+/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
+:reload
